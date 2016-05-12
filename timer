@@ -1,0 +1,17 @@
+def autoUitklok45():
+  if secmid == 33300 or 36000 or 38700 or 42600 or 45300 or 49800 or 52500 or 55800 or 58500 :
+    print("executed")
+
+import time
+from datetime import datetime
+
+while True:
+  tijd = datetime.now()
+  uur = tijd.hour
+  minuut = tijd.minute
+  seconde = tijd.second
+  secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
+  autoUitklok45()
+  print(secmid)
+  time.sleep(0.5)
+ 
