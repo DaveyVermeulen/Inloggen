@@ -13,5 +13,5 @@ while True:
   secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
   autoUitklok45()
   print(secmid)
-  time.sleep(0.5)
+  time.sleep(1)
  
