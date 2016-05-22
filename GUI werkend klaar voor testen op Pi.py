@@ -20,7 +20,9 @@ def inloggen():
     minuut = tijd.minute
     seconde = tijd.second
     secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
+    
     inl=buttonbox(msg,choices=keuze)
+    
     if inl == "Verkort":
         trigger30()
     if inl == "Normaal":
@@ -113,7 +115,7 @@ if antwoord == "Beheerder":
     beheerder()
 if antwoord == "Inloggen":
    inloggen()
-if antwoord == "Aflsluiten":
+if antwoord == "Afsluiten":
     exit
     
 
