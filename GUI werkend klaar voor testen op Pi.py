@@ -27,7 +27,7 @@ def inloggen():
         trigger30()
     if inl == "Normaal":
         trigger45()
-    time.sleep(1)
+    
     
 def uitKlok():
     #connect database
