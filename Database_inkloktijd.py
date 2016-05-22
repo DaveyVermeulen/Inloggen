@@ -1,7 +1,9 @@
-import pymysql
 import time
+import pymysql
 import decimal
+from easygui import *
 from datetime import datetime
+
 
 #connect database
 db = pymysql.connect(host="proxy50.weaved.com", port=38031, user="python", passwd="admin", db="inklokken")
