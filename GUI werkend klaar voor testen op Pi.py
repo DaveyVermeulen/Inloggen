@@ -26,6 +26,7 @@ def inloggen():
     if inl == "Normaal":
         trigger40()
     time.sleep(1)
+    
 def uitKlok():
     #connect database
     db = pymysql.connect(host="proxy50.weaved.com", port=38031, user="python", passwd="admin", db="inklokken")
