@@ -26,7 +26,7 @@ def inloggen():
     if inl == "Verkort":
         trigger30()
     if inl == "Normaal":
-        trigger40()
+        trigger45()
     time.sleep(1)
     
 def uitKlok():
