@@ -1,3 +1,4 @@
+
 from easygui import *
 import time
 import pymysql
@@ -24,9 +25,13 @@ def inloggen():
     inl=buttonbox(msg,choices=keuze)
     
     if inl == "Verkort":
-        trigger30()
+        while True:
+            trigger30()
+        time.sleep(1)
     if inl == "Normaal":
-        trigger45()
+        while True:
+            trigger45()
+        time.sleep(1)
     
     
 def uitKlok():
