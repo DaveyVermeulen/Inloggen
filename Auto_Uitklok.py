@@ -54,7 +54,6 @@ def trigger45():
         uitKlok()
     if secmid == 58500: #16:15
         uitKlok()
-        sys.exit("Einde lesdag")
 
 def trigger30():
     if secmid == 32400: #9:00
@@ -73,7 +72,6 @@ def trigger30():
         uitKlok()
     if secmid == 47700: #13:15
         uitKlok()
-        sys.exit("Einde lesdag")
 
 while True:
     tijd = datetime.now()
