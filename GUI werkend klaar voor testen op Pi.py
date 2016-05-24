@@ -87,7 +87,6 @@ def trigger45():
         uitKlok()
     if secmid == 58500:
         uitKlok()
-        sys.exit("Einde lesdag")
 
 def trigger30():
     if secmid == 32400:
@@ -106,9 +105,6 @@ def trigger30():
         uitKlok()
     if secmid == 47700:
         uitKlok()
-        sys.exit("Einde lesdag")
-        
-
    
 plaatje = "logo_startpagina.gif"
 msg = "Welke modus wilt u?"
