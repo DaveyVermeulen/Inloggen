@@ -93,7 +93,6 @@ def trigger45():
             uitKlok()
         if secmid == 58500:
             uitKlok()
-            sys.exit("Einde lesdag")#systeem sluit, niemand kan weer inklokken
         time.sleep(1)#iedere seconde wordt gecheckt of het al tijd is(einde van het uur)
         tijd = datetime.now()
         secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
@@ -117,8 +116,6 @@ def trigger30(): # voor uitleg naar trigger45, nog niet geheel omgeschreven
         uitKlok()
     if secmid == 47700:
         uitKlok()
-        sys.exit("Einde lesdag")
-
            
 plaatje = "logo_startpagina.gif"#plaatje van school logo
 msg = "Welke modus wilt u?"
