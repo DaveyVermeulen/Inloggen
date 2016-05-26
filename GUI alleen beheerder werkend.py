@@ -24,23 +24,23 @@ def tag():
         
         
 def Toevoegen():
-    
-    #wachten op pasje
-    if #wachten op pasje == true
-        msg = "Voer de informatie van de leerling in:"
-        title = "Leerling informatie"
-        waardes = ["Naam","Leerlingnummer","Klas",]
-        invoer = []  
-        invoer = multenterbox(msg,title, waardes)
-        while 1:
-            if invoer == None: break
-            errmsg = ""
-            for i in range(len(invoer)):
-                if invoer[i].strip() == "":
-                    errmsg = errmsg + ('"%s" is een verplichte invoer.\n\n' % waardes[i])
-            if errmsg == "": break # no problems found
-            invoer = multenterbox(errmsg, title, waardes, invoer)
-            print "Informatie is:", invoer
+    msg = "Voer de informatie van de leerling in:"
+    title = "Leerling informatie"
+    waardes = ["Naam","Leerlingnummer","Klas",]
+    invoer = []  
+    invoer = multenterbox(msg,title, waardes)
+    while 1:
+        if invoer == None: break
+        errmsg = ""
+        for i in range(len(invoer)):
+            if invoer[i].strip() == "":
+                errmsg = errmsg + ('"%s" is een verplichte invoer.\n\n' % waardes[i])
+        if errmsg == "": break # no problems found
+        invoer = multenterbox(errmsg, title, waardes, invoer)
+    for i in range(len(invoer)):
+        #waardes uit list naar mysql schrijven
+    tag()
+    #schrijf de tag naar de rij
         
 
 #data bewerkings menu
@@ -55,21 +55,21 @@ def Databewerken():
 #Pasje bewerk menu
 def pasje():
     msg="Pasje kwijt?"
-            title="Pasje kwijt?"
-            keuz=["Ja","Nee"]
-            invoer=buttonbox(msg,title=title,choices=keuz)
-            if invoer="Ja":
-                msg="Voer het leerlingnummer in:"
-                title="Leerlingnummer
-                invoer=enterbox(msg,title=title)
-                #selecteer in DB de row van het leerlingnummer
-                msgbox("Houdt het pasje voor de scanner")
-                #update tag column voor de row van het leerlingnummer
-                msg="Wilt u nog een pasje aanpassen?"
-                title="Nog een pasje?"
-                keuz=["Ja","Nee"]
-                invoer=buttonbox(msg,title=title,choices=keuz)
-                if invoer
+    title="Pasje kwijt?"
+    keuz=["Ja","Nee"]
+    invoer=buttonbox(msg,title=title,choices=keuz)
+    if invoer="Ja":
+        msg="Voer het leerlingnummer in:"
+        title="Leerlingnummer
+        invoer=enterbox(msg,title=title)
+        #selecteer in DB de row van het leerlingnummer
+        msgbox("Houdt het pasje voor de scanner")
+        #update tag column voor de row van het leerlingnummer
+        msg="Wilt u nog een pasje aanpassen?"
+        title="Nog een pasje?"
+        keuz=["Ja","Nee"]
+        invoer=buttonbox(msg,title=title,choices=keuz)
+        if invoer
             
 
                 
