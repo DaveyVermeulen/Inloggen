@@ -51,14 +51,17 @@ def Databewerken():
         invoer=buttonbox(msg,title=title,choices=keuze)
         if invoer == "Pasje(s) bewerken":
             pasje()
+        if invoer == "Leerlingnummer bewerken":
+            ln()
 
 #Pasje bewerk menu
 def pasje():
     msg="Pasje kwijt?"
     title="Pasje kwijt?"
-    keuz=["Ja","Nee"]
-    invoer=buttonbox(msg,title=title,choices=keuz)
-    if invoer="Ja":
+    keuze=["Ja","Nee"]
+    invoer=buttonbox(msg,title=title,choices=keuze)
+    
+    while invoer="Ja":
         msg="Voer het leerlingnummer in:"
         title="Leerlingnummer
         invoer=enterbox(msg,title=title)
@@ -67,9 +70,21 @@ def pasje():
         #update tag column voor de row van het leerlingnummer
         msg="Wilt u nog een pasje aanpassen?"
         title="Nog een pasje?"
-        keuz=["Ja","Nee"]
-        invoer=buttonbox(msg,title=title,choices=keuz)
-        if invoer
+        keuze=["Ja","Nee"]
+        invoer=buttonbox(msg,title=title,choices=keuze)
+   
+    return()
+
+#leerlingnummer veranderen
+def ln():
+    msg="Leerlingnummer of Naam"
+    title="Veranderen leerlingnummer
+    choices=["Leerlingnummer","Naam"]
+    uitvoer=buttonbox(msg,title=title,choices=choices)
+    if uitvoer == "Leerlingnummer":
+        msgbox("hi")
+    if uitvoer == "Naam":
+        msgbox("hi")
             
 
                 
