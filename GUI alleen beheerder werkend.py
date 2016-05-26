@@ -1,6 +1,7 @@
 from easygui import *
 from time import sleep
-def beheerder:
+
+def beheerder():
     msg="Wat wilt u doen?"
     title="Beheerder"
     keuze=["Leerling(en) toevoegen","Data bewerken","Rooster veranderen"]
@@ -13,14 +14,14 @@ def beheerder:
         Databewerken()
 def tag():
     msg="Houdt uw pasje voor de scanner"
-    title"Uw pasje aub"
+    title="Uw pasje aub"
     choices=["Gedaan", "Annuleren"]
-    invoer=buttonbox(msg,title=title,choices=choices
+    invoer=buttonbox(msg,title=title,choices=choices)
     if invoer == "Gedaan":
         text=open("tags.txt","r")
         tag=text.read()
     if invoer == "Annuleren":
-        return:
+        return
         
         
 def Toevoegen():
@@ -38,7 +39,8 @@ def Toevoegen():
         if errmsg == "": break # no problems found
         invoer = multenterbox(errmsg, title, waardes, invoer)
     for i in range(len(invoer)):
-        #waardes uit list naar mysql schrijven
+        #waardes uit list naar mysql schrijven.
+        print("debug")
     tag()
     #schrijf de tag naar de rij
         
@@ -46,13 +48,13 @@ def Toevoegen():
 #data bewerkings menu
 def Databewerken():
     msg="Wat wilt u bewerken?"
-        title="Data bewerken"
-        keuze=["Pasje(s) bewerken","Leerlingnummer bewerken","Naam bewerken"]
-        invoer=buttonbox(msg,title=title,choices=keuze)
-        if invoer == "Pasje(s) bewerken":
-            pasje()
-        if invoer == "Leerlingnummer bewerken":
-            ln()
+    title="Data bewerken"
+    keuze=["Pasje(s) bewerken","Leerlingnummer bewerken","Naam bewerken"]
+    invoer=buttonbox(msg,title=title,choices=keuze)
+    if invoer == "Pasje(s) bewerken":
+        pasje()
+    if invoer == "Leerlingnummer bewerken":
+        ln()
 
 #Pasje bewerk menu
 def pasje():
@@ -61,9 +63,9 @@ def pasje():
     keuze=["Ja","Nee"]
     invoer=buttonbox(msg,title=title,choices=keuze)
     
-    while invoer="Ja":
+    while invoer == "Ja":
         msg="Voer het leerlingnummer in:"
-        title="Leerlingnummer
+        title="Leerlingnummer"
         invoer=enterbox(msg,title=title)
         #selecteer in DB de row van het leerlingnummer
         msgbox("Houdt het pasje voor de scanner")
@@ -78,7 +80,7 @@ def pasje():
 #leerlingnummer veranderen
 def ln():
     msg="Leerlingnummer of Naam"
-    title="Veranderen leerlingnummer
+    title="Veranderen leerlingnummer"
     choices=["Leerlingnummer","Naam"]
     uitvoer=buttonbox(msg,title=title,choices=choices)
     if uitvoer == "Leerlingnummer":
@@ -86,17 +88,4 @@ def ln():
     if uitvoer == "Naam":
         msgbox("hi")
             
-
-                
-                
-                
-                
-            
-        
-        
-    
-
-    
-
-
-
+beheerder()
