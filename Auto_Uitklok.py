@@ -5,11 +5,12 @@ from easygui import *
 from datetime import datetime
 
 #connect database
-db = pymysql.connect(host="proxy50.weaved.com", port=38031, user="python", passwd="admin", db="inklokken")
+db = pymysql.connect(host="localhost", port=3141, user="python", passwd="admin", db="inklokken")
 
 #werkt als cursor
 cur = db.cursor()   
 
+antwoord = input("Rooster: ")
 def uitKlok():
     x = 1
     query = cur.execute("SELECT * FROM `inkloktijd` WHERE id = (%s)", x)
@@ -54,6 +55,7 @@ def trigger45():
         uitKlok()
     if secmid == 58500: #16:15
         uitKlok()
+        sys.exit("Einde lesdag")
 
 def trigger30():
     if secmid == 32400: #9:00
@@ -72,6 +74,7 @@ def trigger30():
         uitKlok()
     if secmid == 47700: #13:15
         uitKlok()
+        sys.exit("Einde lesdag")
 
 while True:
     tijd = datetime.now()
@@ -83,4 +86,5 @@ while True:
         trigger30()
     if antwoord == "basis":
         trigger45()
+    print(secmid)
     time.sleep(1)

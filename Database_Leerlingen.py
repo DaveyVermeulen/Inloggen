@@ -2,7 +2,7 @@ import pymysql
 import time
 
 #connect database
-db = pymysql.connect(host="proxy52.yoics.net", port=37960, user="python", passwd="admin", db="inklokken")
+db = pymysql.connect(host="localhost", user="python", passwd="admin", db="inklokken")
 
 #werkt als cursor
 cur = db.cursor()
