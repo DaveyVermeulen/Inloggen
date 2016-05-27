@@ -51,6 +51,7 @@ def Toevoegen():
         title="Leerlingen toevoegen"
         choices=["Ja","Nee"]
         ja=buttonbox(msg, title=title,choices=choices)
+    beheerder()
         
 
     
@@ -73,22 +74,19 @@ def Databewerken():
 def pasje():
     msg="Pasje kwijt?"
     title="Pasje kwijt?"
-    keuze=["Ja","Nee","Terug"]
+    keuze=["Ja","Nee"]
     invoer=buttonbox(msg,title=title,choices=keuze)
-    if invoer == "Terug:
-        beheerder()
-    else:
-        while invoer == "Ja":
-        msg="Voer het leerlingnummer in:"
-        title="Leerlingnummer"
-        invoer=enterbox(msg,title)
-        #selecteer in DB de row van het leerlingnummer
-        tag()
-        #update tag column voor de row van het leerlingnummer
-        msg="Wilt u nog een pasje aanpassen?"
-        title="Nog een pasje?"
-        keuze=["Ja","Nee"]
-        invoer=buttonbox(msg,title=title,choices=keuze)
+    while invoer == "Ja":
+          msg="Voer het leerlingnummer in:"
+          title="Leerlingnummer"
+          invoer=enterbox(msg,title)
+          #selecteer in DB de row van het leerlingnummer
+          tag()
+          #update tag column voor de row van het leerlingnummer
+          msg="Wilt u nog een pasje aanpassen?"
+          title="Nog een pasje?"
+          keuze=["Ja","Nee"]
+          invoer=buttonbox(msg,title=title,choices=keuze)
    
     Databewerken()
 
@@ -137,7 +135,7 @@ def beheerder():
     msg="Wat wilt u doen?"
     title="Beheerder"
     image="logo_school.gif"
-    keuze=["Leerling(en) toevoegen","Data bewerken","Rooster veranderen"]
+    keuze=["Leerling(en) toevoegen","Data bewerken","Rooster veranderen","Terug"]
     wat=buttonbox(msg,title=title,image=image,choices=keuze)
     
     #Leerlingen toevoegen
@@ -147,5 +145,8 @@ def beheerder():
         Databewerken()
     if wat == "Rooster veranderen":
         Rooster()
+    if wat == "Terug":
+          print ("test") #moet inlog script starten
+          
             
 beheerder()
