@@ -58,7 +58,7 @@ def Toevoegen():
 def Databewerken():
     msg="Wat wilt u bewerken?"
     title="Data bewerken"
-    keuze=["Pasje(s) bewerken","Leerlingnummer bewerken","Naam bewerken"]
+    keuze=["Pasje(s) bewerken","Leerlingnummer bewerken","Naam bewerken","Terug"]
     invoer=buttonbox(msg,title=title,choices=keuze)
     if invoer == "Pasje(s) bewerken":
         pasje()
@@ -66,21 +66,24 @@ def Databewerken():
         ln()
     if invoer == "Naam bewerken":
         naam()
+    if invoer == "Terug":
+        beheerder()
 
 #Pasje bewerk menu
 def pasje():
     msg="Pasje kwijt?"
     title="Pasje kwijt?"
-    keuze=["Ja","Nee"]
+    keuze=["Ja","Nee","Terug"]
     invoer=buttonbox(msg,title=title,choices=keuze)
-    
-    while invoer == "Ja":
+    if invoer == "Terug:
+        beheerder()
+    else:
+        while invoer == "Ja":
         msg="Voer het leerlingnummer in:"
         title="Leerlingnummer"
         invoer=enterbox(msg,title)
         #selecteer in DB de row van het leerlingnummer
-        print (invoer)
-        msgbox("Houdt het pasje voor de scanner")
+        tag()
         #update tag column voor de row van het leerlingnummer
         msg="Wilt u nog een pasje aanpassen?"
         title="Nog een pasje?"
