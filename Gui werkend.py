@@ -5,12 +5,12 @@ def Rooster():
       msg= "Welk lesrooster wilt u gebruiken?"#msg die wordt gedisplayed
       keuze=["Verkort","Standaard"]  
       lesrooster=buttonbox(msg,choices=keuze) #zelfde als bij inloggen
-      rooster = open("rooster.txt", 'w')#opent rooster
-      if lesrooster == "Verkort":#als keuze verkort is run dit
+      rooster = open("rooster.txt", 'w')#opent bestand waarin keuze rooster is opgeslagen
+      if lesrooster == "Verkort":
           rooster.write("Verkort")
           rooster.close()
           beheerder()
-      if lesrooster == "Standaard":#als keuze standaard is run dit
+      if lesrooster == "Standaard":
           rooster.write("Standaard")
           rooster.close()
           beheerder()
@@ -98,7 +98,7 @@ def ln():
     msg="Leerlingnummer leerling"
     title= "Veranderen leerlingnummer"
     leerlingnummer=enterbox(msg,title)
-##naam is een str dus zoek die str in de naam column bij de db en selecteer in die row leerlingnummer update die met leerlingnummer
+##selecteert row op basis van naam en update daar leerlingnummer
     msg="Nog een leerling aanpassen?"
     title="Veranderen leerlingnummer"
     choices=["Ja","Nee"]
@@ -119,7 +119,7 @@ def naam():
         msg="Naam leerling?"
         title= "Veranderen naam"
         naam=enterbox(msg,title)
-##leerlingnummer is een str dus zoek die str in de leerlingnummer column bij de db en selecteer in die row naam update die met naam
+##selecteer row op basis van leerlingnummer en update daar naam
         msg="Nog een leerling aanpassen?"
         title="Veranderen naam"
         choices=["Ja","Nee"]
