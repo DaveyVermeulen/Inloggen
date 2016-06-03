@@ -1,4 +1,3 @@
-from easygui import *
 import time
 import pymysql
 import sys
@@ -6,10 +5,7 @@ import decimal
 import threading
 from datetime import datetime
 
-def beheer():
-    print("Merge beheer van github" )
-    
-def rooster():
+def start():
     file = open("rooster.txt", 'r')
     rooster = file.read()
     print(rooster)
@@ -118,18 +114,5 @@ def trigger30():
         tijd = datetime.now()
         secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
         
-
-           
-plaatje = "logo.gif"
-msg = "Welke modus wilt u?"
-keuze = ["Inloggen","Beheer","Afsluiten"]
-antwoord = buttonbox(msg,image= plaatje, choices= keuze ) #Laat venster zien en geeft input terug
-
-print(antwoord)
-if antwoord == "Beheer":
-    beheer()
-if antwoord == "Inloggen":
-    rooster()
-if antwoord == "Afsluiten":
-    exit("Systeem sluit af")
+start()
     
