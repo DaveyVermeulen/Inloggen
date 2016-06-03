@@ -21,7 +21,7 @@ class Display(ttk.Frame): #MCListDemo
             MsgPanel(self,
                      [ "Onderstaande lijst toont wie er is ingelogd, staat je naam er ",
                       "niet bij dan ben je niet ingelogd en moet je het opnieuw proberen ",
-                      "Om in te klokken moet je je schoolpas 1-1,5 seconden voor de scanner houden"])
+                      "Om in te klokken moet je je schoolpas 1 seconden voor de scanner houden"])
             SeeDismissPanel(self)
          
         self._create_demo_panel()
