@@ -1,7 +1,10 @@
 import tkinter as tk
 import tkinter.font as tkFont
 import tkinter.ttk as ttk
+import pymysql
 
+db = pymysql.connect(host="localhost", user="python", passwd="admin", db="Inkloktijd")
+cur = db.cursor()
 
 class MultiColumnListbox(object):
 
@@ -19,7 +22,7 @@ class MultiColumnListbox(object):
         msg.pack(fill='x')
         container = ttk.Frame()
         container.pack(fill='both', expand=True)
-        self.tree = ttk.Treeview(columns=car_header, show="headings")
+        self.tree = ttk.Treeview(columns=display_header, show="headings")
         vsb = ttk.Scrollbar(orient="vertical",
             command=self.tree.yview)
         hsb = ttk.Scrollbar(orient="horizontal",
@@ -33,18 +36,18 @@ class MultiColumnListbox(object):
         container.grid_rowconfigure(0, weight=1)
 
     def _build_tree(self):
-        for col in car_header:
+        for col in display_header:
             self.tree.heading(col, text=col.title(),
                 command=lambda c=col: sortby(self.tree, c, 0))
             self.tree.column(col,
                 width=tkFont.Font().measure(col.title()))
 
-        for item in car_list:
+        for item in display_list:
             self.tree.insert('', 'end', values=item)
             for ix, val in enumerate(item):
                 col_w = tkFont.Font().measure(val)
-                if self.tree.column(car_header[ix],width=None)<col_w:
-                    self.tree.column(car_header[ix], width=col_w)
+                if self.tree.column(display_header[ix],width=None)<col_w:
+                    self.tree.column(display_header[ix], width=col_w)
 
 def sortby(tree, col, descending):
     data = [(tree.set(child, col), child) \
@@ -55,23 +58,34 @@ def sortby(tree, col, descending):
     tree.heading(col, command=lambda col=col: sortby(tree, col, \
         int(not descending)))
 
+display_header = ['Leerlingnummer', 'Naam']
+#display_list = [
+#('345678', 'Peter Griffin'),
+#('876543', 'Barny Stinson'),
+#('765098', 'Sheldon Cooper'),
+#('256378', 'Tony Stark')
+#]
 
-car_header = ['Leerlingnummer', 'Naam']
-car_list = [
-('120375', 'Leighton van Gellecom'),
-('345678', 'Peter Griffin'),
-('876543', 'Barny Stinson'),
-('765098', 'Sheldon Cooper'),
-('256378', 'Tony Stark')
+display_list = [
+(str(cur.fetchone()[0]), str(cur.fetchone()[1])),
+(str(cur.fetchone()[2]), str(cur.fetchone()[3])),
+(str(cur.fetchone()[4]), str(cur.fetchone()[5])),
+(str(cur.fetchone()[6]), str(cur.fetchone()[7])),
+(str(cur.fetchone()[8]), str(cur.fetchone()[9])),
+(str(cur.fetchone()[10]), str(cur.fetchone()[11])),
+(str(cur.fetchone()[12]), str(cur.fetchone()[13])),
+(str(cur.fetchone()[14]), str(cur.fetchone()[15])),
+(str(cur.fetchone()[16]), str(cur.fetchone()[17])),
+(str(cur.fetchone()[18]), str(cur.fetchone()[19])),
+(str(cur.fetchone()[20]), str(cur.fetchone()[21])),
+(str(cur.fetchone()[22]), str(cur.fetchone()[23])),
+(str(cur.fetchone()[24]), str(cur.fetchone()[25])),
+(str(cur.fetchone()[26]), str(cur.fetchone()[27])),
+(str(cur.fetchone()[28]), str(cur.fetchone()[29])),
+(str(cur.fetchone()[30]), str(cur.fetchone()[31]))
 ]
 
-car_list = [
-(str(cur.fetchone()[0]), str(cur.fetchone()[1]),
-(str(cur.fetchone()[2]), str(cur.fetchone()[3]),
-
-
-if __name__ == '__main__':
-    root = tk.Tk()
-    root.title("THE KRIP")
-    listbox = MultiColumnListbox()
-    root.mainloop()
+root = tk.Tk()
+root.title("THE KRIP")
+listbox = MultiColumnListbox()
+root.mainloop()
