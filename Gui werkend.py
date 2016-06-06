@@ -1,6 +1,16 @@
+import os
+import time
+import pymysql
+import decimal
 from easygui import *
-from time import sleep
-        
+from datetime import datetime
+
+#connect database
+db = pymysql.connect(host="localhost", port=3141,  user="python", passwd="admin", db="inklokken")
+
+#werkt als cursor
+cur = db.cursor()
+
 def Rooster():
       msg= "Welk lesrooster wilt u gebruiken?"#msg die wordt gedisplayed
       keuze=["Verkort","Standaard"]  
@@ -22,38 +32,26 @@ def tag():
     invoer=buttonbox(msg,title=title,choices=choices)
     if invoer == "Gedaan":
         text=open("tags.txt","r")
+        global tag
         tag=text.read()
+        text.close()
     if invoer == "Annuleren":
-        return()
+        return
 
 def Toevoegen():
-    msg = "Voer uw informatie in"
-    title = "Leerling toevoegen"
-    fieldNames = ["Leerlingnummer", "Naam", "Klas"]
-    fieldValues = []  
-    fieldValues = multenterbox(msg,title, fieldNames)
+      tag()
+      msg = "Voer uw informatie in"
+      title = "Leerling toevoegen"
+      fieldNames = ["Leerlingnummer", "Naam", "Klas"]
+      fieldValues = []  
+      fieldValues = multenterbox(msg,title, fieldNames)
+      Leerlingnummer = int(fieldValues[0])
+      Naam = fieldValues[1]
+      Klas = fieldValues[2]
+      cur.execute("INSERT INTO `Students` (`Leerlingnummer` , `Naam` , `Klas`, `NFC_tag`) VALUES (%s, %s, %s, %s)" , (Leerlingnummer, Naam, Klas, tag))
+      db.commit()
 
-    while 1:
-        if fieldValues == None: break
-        errmsg = ""
-        for i in range(len(fieldNames)):
-            if fieldValues[i].strip() == "":
-                errmsg = errmsg + ('"%s" Dit is een vereist veld.\n\n' % fieldNames[i])
-        if errmsg == "": break 
-        fieldValues = multenterbox(errmsg, title, fieldNames, fieldValues)
-## uit fieldValues komt een list dus voeg die onderdelen in hun corrensponderende vak in de db
-    msg="Nog een leerling toevoegen?"
-    title="Leerlingen toevoegen"
-    choices=["Ja","Nee"]
-    ja=buttonbox(msg, title=title,choices=choices)
-    while ja == "Ja":
-        msg="Nog een leerling toevoegen?"
-        title="Leerlingen toevoegen"
-        choices=["Ja","Nee"]
-        ja=buttonbox(msg, title=title,choices=choices)
-    beheerder()
-        
-
+      
     
 #Data bewerkings menu
 def Databewerken():
