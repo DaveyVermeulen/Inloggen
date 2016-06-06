@@ -42,13 +42,12 @@ def Toevoegen():
       tag()
       msg = "Voer uw informatie in"
       title = "Leerling toevoegen"
-      fieldNames = ["Leerlingnummer", "Voornaam","Achternaam","Klas"]
+      fieldNames = ["Leerlingnummer", "Naam","Klas"]
       fieldValues = []  
       fieldValues = multenterbox(msg,title, fieldNames)
       Leerlingnummer = int(fieldValues[0])
-      Voornaam = fieldValues[1]
-      Achternaam= fieldValues[2]
-      Klas = fieldValues[3]
+      Naam= fieldValues[1]
+      Klas = fieldValues[2]
       
       cur.execute("INSERT INTO `Students` (`Leerlingnummer` , `Naam` , `Klas`, `NFC_tag`) VALUES (%s, %s, %s, %s)" , (Leerlingnummer, Naam, Klas, tag))
       db.commit()
