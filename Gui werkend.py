@@ -36,21 +36,28 @@ def tag():
         tag=text.read()
         text.close()
     if invoer == "Annuleren":
-        return
+        Databewerken()
 
 def Toevoegen():
-      tag()
-      msg = "Voer uw informatie in"
-      title = "Leerling toevoegen"
-      fieldNames = ["Leerlingnummer", "Naam","Klas"]
-      fieldValues = []  
-      fieldValues = multenterbox(msg,title, fieldNames)
-      Leerlingnummer = int(fieldValues[0])
-      Naam= fieldValues[1]
-      Klas = fieldValues[2]
+      while invoer == "Ja":
+            tag()
+            msg = "Voer uw informatie in"
+            title = "Leerling toevoegen"
+            fieldNames = ["Leerlingnummer", "Naam","Klas"]
+            fieldValues = []  
+            fieldValues = multenterbox(msg,title, fieldNames)
+            Leerlingnummer = int(fieldValues[0])
+            Naam= fieldValues[1]
+            Klas = fieldValues[2]
       
-      cur.execute("INSERT INTO `Students` (`Leerlingnummer` , `Naam` , `Klas`, `NFC_tag`) VALUES (%s, %s, %s, %s)" , (Leerlingnummer, Naam, Klas, tag))
-      db.commit()
+            cur.execute("INSERT INTO `Students` (`Leerlingnummer` , `Naam` , `Klas`, `NFC_tag`) VALUES (%s, %s, %s, %s)" , (Leerlingnummer, Naam, Klas, tag))
+            db.commit()
+            
+            msg="Wilt u nog een Leerling toevoegen"
+            title="Nog een Leerling?"
+            keuze=["Ja","Nee"]
+            invoer=buttonbox(msg,title=title,choices=keuze)
+      
 
       
     
