@@ -3,8 +3,9 @@ import tkinter.font as tkFont
 import tkinter.ttk as ttk
 import pymysql
 
-db = pymysql.connect(host="localhost", user="python", passwd="admin", db="Inkloktijd")
+db = pymysql.connect(host="localhost", port=3141, user="python", passwd="admin", db="Inkloktijd")
 cur = db.cursor()
+cur.execute("SELECT `Naam`, `Leerlingnummer` FROM `Inkloktijd`")
 
 class MultiColumnListbox(object):
 
@@ -66,24 +67,9 @@ display_header = ['Leerlingnummer', 'Naam']
 #('256378', 'Tony Stark')
 #]
 
-display_list = [
-(str(cur.fetchone()[0]), str(cur.fetchone()[1])),
-(str(cur.fetchone()[2]), str(cur.fetchone()[3])),
-(str(cur.fetchone()[4]), str(cur.fetchone()[5])),
-(str(cur.fetchone()[6]), str(cur.fetchone()[7])),
-(str(cur.fetchone()[8]), str(cur.fetchone()[9])),
-(str(cur.fetchone()[10]), str(cur.fetchone()[11])),
-(str(cur.fetchone()[12]), str(cur.fetchone()[13])),
-(str(cur.fetchone()[14]), str(cur.fetchone()[15])),
-(str(cur.fetchone()[16]), str(cur.fetchone()[17])),
-(str(cur.fetchone()[18]), str(cur.fetchone()[19])),
-(str(cur.fetchone()[20]), str(cur.fetchone()[21])),
-(str(cur.fetchone()[22]), str(cur.fetchone()[23])),
-(str(cur.fetchone()[24]), str(cur.fetchone()[25])),
-(str(cur.fetchone()[26]), str(cur.fetchone()[27])),
-(str(cur.fetchone()[28]), str(cur.fetchone()[29])),
-(str(cur.fetchone()[30]), str(cur.fetchone()[31]))
-]
+info = cur.fetchall()
+print(info)
+
 
 root = tk.Tk()
 root.title("THE KRIP")
