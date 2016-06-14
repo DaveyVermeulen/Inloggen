@@ -36,4 +36,4 @@ def NFCReader():
 
 while 1:
     NFCReader()
-    time.sleep(0.4)
+    time.sleep(0.9)

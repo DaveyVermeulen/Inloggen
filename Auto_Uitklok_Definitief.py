@@ -63,7 +63,6 @@ def trigger45():
         if secmid == 36000:
             uitKlok()
         if secmid == 38700:
-            print("debug")
             uitKlok()
         if secmid == 39900:
             uitKlok()
@@ -117,4 +116,4 @@ def trigger30():
         tijd = datetime.now()
         secmid = tijd.hour*3600 + tijd.minute*60 + tijd.second
     
-uitKlok()
+rooster()
