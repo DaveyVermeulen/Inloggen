@@ -26,7 +26,7 @@ def NFCReader():
     
             else:
                 tag = "".join(str(x) for x in response)
-                text=open("tags.txt","w")
+                text=open("/home/pi/Desktop/Inklokken/tags.txt","w")
                 text.write(tag)
                 text.close()
                 print "tag ontvangen:", (tag)
