@@ -4,11 +4,7 @@ import pymysql
 import sys
 import decimal
 from datetime import datetime
-
-try:
-    import Scripts as kx
-except:
-    from Inklokken import Scripts as kx
+import Scripts as kx
     
 def rooster():
     file = open("/home/pi/Desktop/Inklokken/rooster.txt", 'r')

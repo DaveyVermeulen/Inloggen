@@ -40,7 +40,7 @@ def uitKlok():
             totaal = round((decimal.Decimal(str(SU)) + studieUren), 1)
             cur.execute("UPDATE `Leerlingen` SET `Studie_uren` = (%s) WHERE `Leerlingnummer`= (%s)" %(totaal, Leerlingnummer))
         cur.execute("INSERT INTO `Logs`  (`Leerlingnummer`, `Naam`, `In/uitloggen`) VALUES (%s, %s, 'Uit')", (Leerlingnummer, Naam))
-        cur.db.commit()
+        db.commit()
         db.close()
         studieuren()
         x = x + 1

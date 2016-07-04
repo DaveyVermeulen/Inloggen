@@ -5,11 +5,7 @@ import time
 from datetime import datetime
 import decimal
 from easygui import *
-
-try:
-    import Scripts as kx
-except:
-    from Inklokken import Scripts as kx
+import Scripts as kx
 
 state = open("/home/pi/Desktop/Inklokken/update.txt", "w")
 state.write("Yes")
@@ -35,11 +31,15 @@ def start():
     
     tree = ttk.Treeview(frame2)
     tree['show'] = 'headings'
-    tree["columns"]=("Naam","Leerlingnummer")
-    tree.column("Naam", width=500 )
-    tree.column("Leerlingnummer", width=300)
+    tree["columns"]=("Naam", "Klas","Leerlingnummer", "Tijd")
+    tree.column("Naam", width=300)
+    tree.column("Klas", width=150)
+    tree.column("Leerlingnummer", width=150)
+    tree.column("Tijd", width=150)
     tree.heading("Naam", text="Naam")
+    tree.heading("Klas", text="Klas")
     tree.heading("Leerlingnummer", text="Leerlingnummer")
+    tree.heading("Tijd", text="Tijd")
     
     def update():
         db = pymysql.connect(host="localhost", port=3141, user="python", passwd="admin", db="inklokken")
@@ -59,7 +59,13 @@ def start():
 
             for i in range(0, len(info)):
                 print(i)
-                tree.insert("", i, text=i+1, values = ((info[i])[0], (info[i])[1]))
+                cur.execute("SELECT `Klas` FROM `Leerlingen` WHERE `Leerlingnummer` = (%s)", (info[i][1]))
+                klas = cur.fetchone()[0]
+            
+                volgorde = "%H:%M"
+                tijdIn = datetime.now()
+                tijd = tijdIn.strftime(volgorde)
+                tree.insert("", i, text=i+1, values = ((info[i])[0], klas, (info[i])[1], tijd))
 
             state.write("No")
             state.close()

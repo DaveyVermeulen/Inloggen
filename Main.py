@@ -36,7 +36,7 @@ def klok():
     except:
         return
 
-    if Leerlingnummer == 1:
+    if Naam == "ADMIN":
         beheerder()
                
     else:
@@ -59,6 +59,7 @@ def klok():
                db.commit()
                state = open("/home/pi/Desktop/Inklokken/update.txt", "w")
                state.write("Yes")
+               state.close()
                studieuren()
            
           
@@ -70,6 +71,7 @@ def klok():
                db.commit()
                state = open("/home/pi/Desktop/Inklokken/update.txt", "w")
                state.write("Yes")
+               state.close()
                studieuren()
                
            print("Je bent uitgeklokt:", Naam)
@@ -85,6 +87,7 @@ def klok():
            db.commit()
            state = open("/home/pi/Desktop/Inklokken/update.txt", "w")
            state.write("Yes")
+           state.close()
            print("Je bent ingeklokt:", Naam)
     
        else:
@@ -92,9 +95,10 @@ def klok():
            db.commit()
            state = open("/home/pi/Desktop/Inklokken/update.txt", "w")
            state.write("No")
+           state.close()
            print("Sorry, deze leerling komt niet voor in de database")
 
-    state.close()
+    
     
 def studieuren():       
         datenow = datetime.now().date()
@@ -210,32 +214,35 @@ def Verwijderen():
     msg="Vul het leerlingnummer in"
     title="Verwijderen"
     invoer=enterbox(msg,title=title)
-    
-    try:
-        cur.execute("SELECT `Naam` FROM `Leerlingen` WHERE `Leerlingnummer` = (%s)", (invoer))
-        naam= cur.fetchone()[0]
-        msg="Wilt u de leerling: "+naam+" verwijderen uit de database?"
-        title="Leerling verwijderen"
-        choices=["Ja", "Nee"]
-        invoer=buttonbox(msg,title=title, choices=choices)
-        if invoer == "Ja":
-            cur.execute("DELETE FROM `Leerlingen` WHERE `Leerlingnummer` = (%s)", (invoer))
-            db.commit()
-            msg="De leerling "+naam+" is verwijderd"
-            title="Leerling verwijderd"
-            msgbox(msg, title)
+
+    if invoer == None:
+        return
+    else:
+        try:
+            cur.execute("SELECT `Naam` FROM `Leerlingen` WHERE `Leerlingnummer` = (%s)", (invoer))
+            naam= cur.fetchone()[0]
+            msg="Wilt u de leerling: "+naam+" verwijderen uit de database?"
+            title="Leerling verwijderen"
+            choices=["Ja", "Nee"]
+            invoer=buttonbox(msg,title=title, choices=choices)
+            if invoer == "Ja":
+                cur.execute("DELETE FROM `Leerlingen` WHERE `Leerlingnummer` = (%s)", (invoer))
+                db.commit()
+                msg="De leerling "+naam+" is verwijderd"
+                title="Leerling verwijderd"
+                msgbox(msg, title)
             
-        else:
-            msg="De leerling "+naam+" is niet verwijderd"
-            title="Leerling behouden"
-            msgbox(msg, title)  
+            else:
+                msg="De leerling "+naam+" is niet verwijderd"
+                title="Leerling behouden"
+                msgbox(msg, title)  
         
-    except:
-        msg=invoer+" is niet bekend in de database"
-        title='onbekend leerlingnummer'
-        msgbox(msg, title=title)
+        except:
+            msg=invoer+" is niet bekend in de database"
+            title='onbekend leerlingnummer'
+            msgbox(msg, title=title)
         
-    beheerder()
+        beheerder()
 
     
 def beheerder():
@@ -253,7 +260,7 @@ def beheerder():
     if what == "Rooster veranderen":
         Rooster()
     if what == "Terug":
-        run()   
+        print("return")  
     if what == "Aflsuiten":
         sys.exit()
         
@@ -264,5 +271,5 @@ def run():
         klok()
         time.sleep(0.5)
 
-print("Druk op ctrl + c om het systeem af te sluiten")
+print("Sluit dit command venster om het programma af te sluiten")
 run()
